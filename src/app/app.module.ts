@@ -25,3 +25,4 @@ import { DialogComponent } from './dialog/dialog.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
