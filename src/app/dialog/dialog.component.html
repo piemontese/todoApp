@@ -1,0 +1,39 @@
+<!--
+<p>This is a dialog</p>
+<p>
+  <label>
+    This is a text box inside of a dialog.
+    <input #dialogInput>
+  </label>
+</p>
+-->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="dialogRef.close()"> <span aria-hidden="true">×</span> </button>
+        <h4 class="modal-title" id="modalLabel">Save Todo list</h4> </div>
+      <div *ngIf="todoListName !== ''" class="modal-body"> Override Todo list {{todoListName}}? </div>
+      <div *ngIf="todoListName === ''" class="modal-body">
+        <input id="todoListName" class="form-control" placeholder="Todo list name" required autofocus [(ngModel)]="model.todoListName" name="todoListName"> </div>
+      <div class="modal-footer">
+        <button md-raised-button (click)="dialogRef.close()">Cancel</button>
+        <button md-raised-button color="primary" (click)="dialogRef.close(model.todoListName)">OK</button>
+      </div>
+  
+<!--
+<div class="modal fade" id="saveDialog" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="dialogRef.close()"> <span aria-hidden="true">×</span> </button>
+        <h4 class="modal-title" id="modalLabel">Save Todo list</h4> </div>
+      <div *ngIf="todoListName !== ''" class="modal-body"> Override Todo list {{todoListName}}? </div>
+      <div *ngIf="todoListName === ''" class="modal-body">
+        <input type="text" id="listName" class="form-control" placeholder="Todo list name" required autofocus [(ngModel)]="model.inputTodo" name="inputTodo"> </div>
+      <div class="modal-footer">
+        <button md-raised-button data-dismiss="modal" (click)="cancelClick()">Cancel</button>
+        <button md-raised-button color="primary" data-dismiss="modal" (click)="okClick()">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+      
