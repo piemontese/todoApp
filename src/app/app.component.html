@@ -14,7 +14,7 @@
   </md-toolbar>
   <div class="app-content">
     <md-card>
-      <md-card-title class="todo-card-title">Todo's list</md-card-title>
+      <md-card-title class="todo-card-title">Todo list</md-card-title>
       <md-card-subtitle>
         {{todoListName}}
       </md-card-subtitle>
@@ -52,7 +52,7 @@
             </div>
             <div class="todo-item-button">
               <button (click)="deleteTodo(i)" md-mini-fab>
-                <md-icon>close</md-icon>
+                <md-icon>delete</md-icon>
               </button>
             </div>
           </div>
@@ -60,8 +60,9 @@
       </ul>
       <div class="container-fluid">
         <md-card-actions class="todos-save">
-          <button md-raised-button (click)="deleteTodos()">Delete Todo list</button>
-          <button md-raised-button (click)="saveTodos()">Save Todo list</button>
+          <button md-raised-button (click)="createTodos()">Create Todo list <md-icon>library_add</md-icon></button>
+          <button md-raised-button (click)="deleteTodos()">Delete Todo list <md-icon>delete</md-icon></button>
+          <button md-raised-button (click)="saveTodos()">Save Todo list <md-icon>save</md-icon></button>
         </md-card-actions>
       </div>
     </md-card>
