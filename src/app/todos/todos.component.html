@@ -1,0 +1,71 @@
+<md-sidenav-layout [class.m2app-dark]="isDarkTheme">
+  <md-sidenav #sidenav mode="side" class="app-sidenav">
+    Saved Todo lists
+    <ul *ngIf="savedTodos" class="todo-list">
+      <li *ngFor="let item of savedTodos; let i = index" [attr.data-index]="i">
+        <button *ngIf="todoListName == item" md-raised-button color="primary" class="btn btn-lg btn-block" (click)="selectTodos(item)" disabled>{{item}} </button>
+        <button *ngIf="todoListName !== item" md-raised-button class="btn btn-lg btn-block" (click)="selectTodos(item)">{{item}}</button>
+      </li>
+    </ul>
+  </md-sidenav>
+  <md-toolbar color="primary">
+    <button class="app-icon-button" (click)="sidenav.toggle()"> <i class="material-icons app-toolbar-menu">menu</i> </button> Todo App <span class="app-toolbar-filler"></span>
+    <button md-button (click)="isDarkTheme = !isDarkTheme">TOGGLE DARK THEME</button>
+  </md-toolbar>
+  <div class="app-content">
+    <md-card>
+      <md-card-title class="todo-card-title">Todo list</md-card-title>
+      <md-card-subtitle>
+        {{todoListName}}
+      </md-card-subtitle>
+      <div class="todo-input">
+        <form (submit)="addTodo()">
+          <div class="container-fluid">
+            <div class="todo-item-checkbox">&ensp;</div>
+            <div class="todo-item-text">
+              <!--
+              <md-input placeholder="Todo" minlength="10"></md-input>
+              <input type="text" id="inputTodo" class="form-control" placeholder="Todo" required autofocus [(ngModel)]="model.text" name="inputTodo">
+              -->
+              <md-input class="todos-full-width" id="inputTodo"  placeholder="Todo" required autofocus [(ngModel)]="model.text" name="inputTodo"></md-input>
+            </div>
+            <!--
+            <div class="todo-item-button">
+              <button md-fab>
+                <md-icon>check circle</md-icon>
+              </button>
+            </div>
+            -->
+          </div>
+        </form>
+      </div>
+      <!--   
+      <button md-button><md-icon>close</md-icon></button>
+      -->
+      <ul class="todo-list" *ngIf="todoList">
+        <li *ngFor="let item of todoList; let i = index" [attr.data-index]="i" class="todo-item">
+          <div class="container-fluid">
+            <div class="todo-item-checkbox">
+              <md-checkbox [checked]="item.checked" (click)="checkboxClick(i)"></md-checkbox>
+            </div>
+            <div class="todo-item-text">
+              {{item.text}}
+            </div>
+            <div class="todo-item-button">
+              <button (click)="deleteTodo(i)" md-mini-fab>
+                <md-icon>delete</md-icon>
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="container-fluid">
+        <md-card-actions class="todos-save" *ngIf="todoList">
+          <button md-raised-button (click)="createTodos()">Create Todo list <md-icon>library_add</md-icon></button>
+          <button md-raised-button color="accent" (click)="deleteTodos()">Delete Todo list <md-icon>delete</md-icon></button>
+          <button md-raised-button color="primary" (click)="saveTodos()">Save Todo list <md-icon>save</md-icon></button>
+        </md-card-actions>
+      </div>
+    </md-card>
+  </div>
+</md-sidenav-layout>

@@ -1,20 +1,21 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../data.service';
 import { Subscription }   from 'rxjs/Subscription';
-import { Todo } from '../todo';
+//import { Todo } from '../todo';
 
 @Component({
   selector: 'app-save-dialog',
   templateUrl: './save-dialog.component.html',
-styleUrls: ['./save-dialog.component.css']
+  styleUrls: ['./save-dialog.component.css']
 })
 export class SaveDialogComponent implements OnInit {
   @Input() todoListName: string = '';
   subscription: Subscription;
   todoList = Array();
 
-  model = new Todo(); 
-
+//  model = new Todo(); 
+  model = this.todoListName;
+  
   constructor( private dataService: DataService ) { 
     this.subscription = dataService.todoListName$.subscribe(
       todoListName => {
@@ -39,7 +40,7 @@ export class SaveDialogComponent implements OnInit {
 
   okClick() { 
     console.log("OK");
-    this.dataService.setTodoListName(this.model.todoListName);
+    this.dataService.setTodoListName(this.model);
   }
 
   ngOnInit() {

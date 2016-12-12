@@ -1,4 +1,5 @@
 <!-- The modal -->
+
 <div class="modal hide fade in" data-keyboard="false" data-backdrop="static"   id="saveDialog" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -7,7 +8,7 @@
         <h4 class="modal-title" id="modalLabel">Save Todo list</h4> </div>
       <div *ngIf="todoListName !== ''" class="modal-body"> Override Todo list {{todoListName}}? </div>
       <div *ngIf="todoListName === ''" class="modal-body">
-        <input type="text" id="todoListName" class="form-control" placeholder="Todo list name" required autofocus [(ngModel)]="model.todoListName" name="todoListName"> </div>
+        <input type="text" id="todoListName" class="form-control" placeholder="Todo list name" required autofocus [(ngModel)]="model" name="todoListName"> </div>
       <div class="modal-footer">
         <button md-raised-button data-dismiss="modal" (click)="cancelClick()">Cancel</button>
         <button md-raised-button color="primary" data-dismiss="modal" (click)="okClick()">OK</button>
@@ -15,4 +16,9 @@
     </div>
   </div>
 </div>
-
+<!--
+<div class="dialog-container">
+        <button md-raised-button data-dismiss="modal" (click)="cancelClick()">Cancel</button>
+        <button md-raised-button color="primary" data-dismiss="modal" (click)="okClick()">OK</button>
+</div>
+-->
