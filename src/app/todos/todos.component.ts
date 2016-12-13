@@ -74,10 +74,7 @@ export class TodosComponent implements OnInit {
   }
 
   deleteTodo( i: number ) {
-    this.todoList.splice(i, 1);
-    if ( this.todoList.length === 0 ) this.todoList = null;
-    console.log(this.todoList);
-    console.log(i);
+    this.todosService.deleteTodo(i, this.todoList);
   }
 
   createTodos() {
@@ -89,15 +86,10 @@ export class TodosComponent implements OnInit {
 //    $('#saveDialog').modal();
     this.todosService.setTodoListName(this.todoListName);
     console.log('todoListName: ' + this.todoListName);
-    this.openDialog();
-/*
-    if ( this.todoList && this.todoListName !== '' ) {
-      localStorage.setItem(this.todoListName, JSON.stringify(this.todoList));
-      console.log('todoListName: ' + this.todoListName);
-      console.log('todoListName: ' + JSON.parse(localStorage.getItem(this.todoListName)));
-      this.todosService.getSavedTodos();
-    }
-*/
+    if ( this.todoListName === '' )
+      this.openDialog();
+    else
+      this.todosService.saveTodos(this.todoListName, this.todoList);
   }
 
   deleteTodos() {
@@ -117,34 +109,21 @@ export class TodosComponent implements OnInit {
   openDialog() {
     this.todosService.setTodoListName(this.todoListName);
     let dialogRef = this.dialog.open(DialogComponent, {
-      disableClose: false//,
-//      width: "40%"
+      disableClose: false,
+      width: "30%"
     });
 
-    /*
-    dialogRef.afterClosed().subscribe(result => {
-      this.lastDialogResult = result;
-      console.log("DialogComponent closed: " + result);
-    })
-    */
-    /*
-    this.dialog.open(DialogComponent, this.config)
-         .then(res => {
-            this.dialogRef = res;
-            this.dialogRef.componentInstance.title = 'Title';
-//            this.dialogRef.componentInstance.contents = contents;
-         });
-    */
     dialogRef.afterClosed().subscribe(result => {
       console.log('dialog result: ' + result);
       if ( result !== '' ) {
+        /*
         localStorage.setItem(this.todoListName, JSON.stringify(this.todoList));
         console.log('todoListName: ' + this.todoListName);
         console.log('todoListName: ' + JSON.parse(localStorage.getItem(this.todoListName)));
         this.todosService.getSavedTodos();
+        */
+        this.todosService.saveTodos(this.todoListName, this.todoList);
       }
-//      close(result);
-//      this.dialogRef = null;
     });
   }
 

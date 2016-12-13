@@ -43,13 +43,20 @@ export class TodosService {
     this.savedTodosSource.next(JSON.stringify(savedTodos));
   }
   
-  deleteTodo( i: number ) {
-    /*
-    this.todoList.splice(i, 1);
-    if ( this.todoList.length === 0 ) this.todoList = null;
-    console.log('TodosService.todoList: ' +  this.todoList);
+  saveTodos( todoListName: string, todoList: Todo[] ) {
+    if ( todoList && todoListName !== '' ) {
+      localStorage.setItem(todoListName, JSON.stringify(todoList));
+      console.log('TodoService.todoListName: ' + todoListName);
+      console.log('TodoService.todoList: ' + JSON.parse(localStorage.getItem(todoListName)));
+      this.getSavedTodos();
+    }
+  }
+
+  deleteTodo( i: number, todoList: Todo[] ) {
+    todoList.splice(i, 1);
+    if ( todoList.length === 0 ) todoList = null;
+    console.log(todoList);
     console.log(i);
-    */
   }
 
 /*
