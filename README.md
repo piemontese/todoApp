@@ -30,7 +30,7 @@ Run `ng github-pages:deploy` to deploy to Github Pages.
 
 To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-##App help
+##App specific steps
 
- - `npm install --save bootstrap@next
- - `npm install --save @agular/material@latest
+ - `npm install --save bootstrap@next`
+ - `npm install --save @agular/material@latest`
