@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
+import { MdDialog, MdDialogRef, MdDialogConfig, MdSnackBar, MdSnackBarConfig } from '@angular/material';
 import { TodosService, Todo } from './todos.service';
 import { DialogComponent } from './dialog/dialog.component';
 
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
-  styleUrls: ['./todos.component.scss']
+  styleUrls: ['./todos.component.scss'],
+  providers: [MdSnackBar]
 })
 export class TodosComponent implements OnInit {
   /*
@@ -23,6 +24,7 @@ export class TodosComponent implements OnInit {
   todoListName: string = '';
   isDarkTheme: boolean = false;
   dialogResult: string;
+  snackBarConfig: MdSnackBarConfig;
 //  dialogRef: MdDialogRef<DialogComponent>;
 
   model = this.todo;
@@ -33,7 +35,7 @@ export class TodosComponent implements OnInit {
                { checked: false, text: 'todo 4' } ];
   */
 
-  constructor( private dialog: MdDialog/*, private config: MdDialogConfig*/, private todosService: TodosService ) {
+  constructor( private dialog: MdDialog, private snackBar: MdSnackBar, private todosService: TodosService ) {
     todosService.todoListName$.subscribe(
       todoListName => {
         this.todoListName = `${todoListName}`;
@@ -53,7 +55,10 @@ export class TodosComponent implements OnInit {
         console.log('TodosComponent.savedTodos = ' + this.savedTodos);
       });
 
-    /*
+    this.snackBarConfig = new MdSnackBarConfig();
+    this.snackBarConfig.duration = 2000;
+
+/*
     for ( var i = 0, len = localStorage.length; i < len; ++i ) {
        this.savedTodos.push(localStorage.getItem( localStorage.key( i ) ));
     }
@@ -64,12 +69,16 @@ export class TodosComponent implements OnInit {
     console.log(this.todoList);
   }
 
-  addTodo( /*text: string*/ ) {
+  addTodo() {
+    for (var i = 0; i < this.todoList.length; i++) {
+      if ( this.todoList[i].text == this.model.text ) {
+        this.snackBar.open('Todo already in list', '', this.snackBarConfig);
+        return;
+      }
+    }
     let todo = { type: this.todo.type, checked: false, text: this.model.text };
     if ( !this.todoList ) this.todoList = [];
     this.todoList.push(todo);
-    console.log(this.todoList);
-    console.log(this.model);
     this.model.text = '';
   }
 
@@ -88,8 +97,10 @@ export class TodosComponent implements OnInit {
     console.log('todoListName: ' + this.todoListName);
     if ( this.todoListName === '' )
       this.openDialog();
-    else
+    else {
       this.todosService.saveTodos(this.todoListName, this.todoList);
+      this.snackBar.open('Todo list "' + this.todoListName + '" saved', '', this.snackBarConfig);
+    }
   }
 
   deleteTodos() {
@@ -116,13 +127,8 @@ export class TodosComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('dialog result: ' + result);
       if ( result !== '' ) {
-        /*
-        localStorage.setItem(this.todoListName, JSON.stringify(this.todoList));
-        console.log('todoListName: ' + this.todoListName);
-        console.log('todoListName: ' + JSON.parse(localStorage.getItem(this.todoListName)));
-        this.todosService.getSavedTodos();
-        */
         this.todosService.saveTodos(this.todoListName, this.todoList);
+        this.snackBar.open('Todo list "' + this.todoListName + '" saved', '', this.snackBarConfig);
       }
     });
   }
