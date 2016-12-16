@@ -32,5 +32,5 @@ To get more help on the `angular-cli` use `ng --help` or go check out the [Angul
 
 ##App specific steps
 
- - `npm install --save bootstrap@next`
- - `npm install --save @agular/material@latest`
+      npm install --save bootstrap@next
+      npm install --save @agular/material@latest
