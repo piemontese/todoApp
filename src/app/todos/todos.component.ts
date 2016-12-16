@@ -70,12 +70,13 @@ export class TodosComponent implements OnInit {
   }
 
   addTodo() {
-    for (var i = 0; i < this.todoList.length; i++) {
-      if ( this.todoList[i].text == this.model.text ) {
-        this.snackBar.open('Todo already in list', '', this.snackBarConfig);
-        return;
+    if ( this.todoList )
+      for (var i = 0; i < this.todoList.length; i++) {
+        if ( this.todoList[i].text == this.model.text ) {
+          this.snackBar.open('Todo already in list', '', this.snackBarConfig);
+          return;
+        }
       }
-    }
     let todo = { type: this.todo.type, checked: false, text: this.model.text };
     if ( !this.todoList ) this.todoList = [];
     this.todoList.push(todo);
