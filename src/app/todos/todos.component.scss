@@ -22,8 +22,9 @@ $theme: md-light-theme($primary, $accent);
 }
 
 
-body {
+body, md-sidenav-layout, .md-sidenav-content, .app-content {
   margin: 0;
+  height: 100%;
 }
 
 /* You can add global styles to this file, and also import other style files */
@@ -55,6 +56,7 @@ md-sidenav-layout.m2app-dark {
 
 .app-content {
   padding: 20px;
+  width: 100%;
 }
 
 .app-content md-card {
@@ -139,6 +141,7 @@ ul {
 .todo-input {
   font-size: 25px;
   padding-bottom: 20px;
+  height: 100%;
 }
 
 .todo-list {
@@ -162,6 +165,7 @@ ul {
   padding-left: 10px;
   width: 80%;
   float: left;
+  color: black;
 }
 
 .todo-item-button {
@@ -185,3 +189,8 @@ ul {
   width: 100%;
 }
 
+.todo-line-through {
+  text-decoration: line-through;
+  color: lightgray;
+  font-style: italic;
+}

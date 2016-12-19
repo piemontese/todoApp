@@ -37,7 +37,18 @@ export class TodosService {
   getSavedTodos() { 
     let savedTodos = [];
     for (var key in localStorage){
-      savedTodos.push(key);
+      /*
+      let notFound = true;
+      let array = JSON.parse(localStorage.getItem(key));
+      for (var i = 0; i < array.length; i++) {
+        if ( array[i].type != "Todo" ) {
+          notFound = true;
+          break;
+        }
+      }
+      if ( notFound == false )
+      */
+        savedTodos.push(key);
     }
     console.log('TodosService.savedTodos: ' + savedTodos);
     this.savedTodosSource.next(JSON.stringify(savedTodos));

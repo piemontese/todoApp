@@ -135,8 +135,8 @@ export class TodosComponent implements OnInit {
   }
 
   checkboxClick( i: number ) {
-    this.todoList[i].checked = true;
-    console.log("checkBox(" + i + ") clicked");
+    //this.todoList[i].checked = this.model.checked;
+    console.log("checkBox(" + i + ") = " + this.todoList[i].checked);
   }
 
   ngOnInit( ) {

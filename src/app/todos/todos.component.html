@@ -23,19 +23,8 @@
           <div class="container-fluid">
             <div class="todo-item-checkbox">&ensp;</div>
             <div class="todo-item-text">
-              <!--
-              <md-input placeholder="Todo" minlength="10"></md-input>
-              <input type="text" id="inputTodo" class="form-control" placeholder="Todo" required autofocus [(ngModel)]="model.text" name="inputTodo">
-              -->
               <md-input class="todos-full-width" id="inputTodo"  placeholder="Todo" required autofocus [(ngModel)]="model.text" name="inputTodo"></md-input>
             </div>
-            <!--
-            <div class="todo-item-button">
-              <button md-fab>
-                <md-icon>check circle</md-icon>
-              </button>
-            </div>
-            -->
           </div>
         </form>
       </div>
@@ -46,13 +35,16 @@
         <li *ngFor="let item of todoList; let i = index" [attr.data-index]="i" class="todo-item">
           <div class="container-fluid">
             <div class="todo-item-checkbox">
-              <md-checkbox [checked]="item.checked" (click)="checkboxClick(i)"></md-checkbox>
+              <md-checkbox [(ngModel)]="item.checked" [checked]="item.checked" (click)="checkboxClick(i)"></md-checkbox>
             </div>
-            <div class="todo-item-text">
+            <div class="todo-item-text" [class.todo-line-through]="item.checked">
               {{item.text}}
             </div>
             <div class="todo-item-button">
-              <button (click)="deleteTodo(i)" md-mini-fab>
+              <button color="primary" (click)="editTodo(i)" md-mini-fab>
+                <md-icon>build</md-icon>
+              </button>
+              <button color="warn" (click)="deleteTodo(i)" md-mini-fab>
                 <md-icon>delete</md-icon>
               </button>
             </div>
@@ -62,7 +54,7 @@
       <div class="container-fluid">
         <md-card-actions class="todos-save" *ngIf="todoList">
           <button md-raised-button (click)="createTodos()">Create Todo list <md-icon>library_add</md-icon></button>
-          <button md-raised-button color="accent" (click)="deleteTodos()">Delete Todo list <md-icon>delete</md-icon></button>
+          <button md-raised-button color="warn" (click)="deleteTodos()">Delete Todo list <md-icon>delete</md-icon></button>
           <button md-raised-button color="primary" (click)="saveTodos()">Save Todo list <md-icon>save</md-icon></button>
         </md-card-actions>
       </div>

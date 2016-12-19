@@ -17,14 +17,16 @@
   </div>
 </div>
 -->
-    <h3>Save todo list</h3>
-    <div class="modal-body">
-      <!--
-      <input type="text" id="todoListName" class="form-control" placeholder="Todo list name" required autofocus [(ngModel)]="model" name="todoListName"> 
-      -->
+<div class="dialog-container">
+    <div class="dialog-title">Save todo list</div>
+    <div class="dialog-content">
       <md-input class="container-full todos-full-width" id="todoListName"  placeholder="Todo list name" required autofocus [(ngModel)]="model" name="todoListName"></md-input>
     </div>
     <div class="dialog-container modal-footer">
-      <button md-raised-button data-dismiss="modal" (click)="cancelClick()">Cancel</button> 
-      <button md-raised-button color="primary" data-dismiss="modal" (click)="okClick()">OK</button>
+    <!--<md-dialog-actions>-->
+      <button md-raised-button data-dismiss="modal" (click)="cancelClick()">Cancel  <md-icon>clear</md-icon>
+</button> 
+      <button md-raised-button color="primary" data-dismiss="modal" (click)="okClick()">OK  <md-icon>done</md-icon></button>
+    <!--</md-dialog-actions>-->
     </div>
+</div>
