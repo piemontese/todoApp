@@ -50,6 +50,12 @@ body, md-sidenav-layout, .md-sidenav-content, .app-content {
   transform: translate(-50%, -50%);
 }
 
+html, body, md-sidenav-container, app-content {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
 md-sidenav-layout.m2app-dark {
   background: black;
 }
