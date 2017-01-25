@@ -32,4 +32,4 @@ To get more help on the `angular-cli` use `ng help` or go check out the [Angular
 
 ## TodoApp link
 
-[TodoApp](http://www.roomsfinder.it/angular2/TodoApp/dist/)
+[TodoApp](http://www.roomsfinder.it/angular2/todoApp/dist/)
