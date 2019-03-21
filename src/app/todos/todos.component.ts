@@ -17,9 +17,9 @@ export class TodosComponent implements OnInit {
     text:  ''
   };
   */
-  todo : Todo = new Todo;
+  todo: Todo = new Todo;
 //  todoList = Array();
-  todoList : Todo[];
+  todoList: Todo[];
   savedTodos = [];
   todoListName: string = '';
   isDarkTheme: boolean = false;
@@ -70,15 +70,16 @@ export class TodosComponent implements OnInit {
   }
 
   addTodo() {
-    if ( this.todoList )
-      for (var i = 0; i < this.todoList.length; i++) {
-        if ( this.todoList[i].text == this.model.text ) {
+    if ( this.todoList ) {
+      for (let i = 0; i < this.todoList.length; i++) {
+        if ( this.todoList[i].text === this.model.text ) {
           this.snackBar.open('Todo already in list', '', this.snackBarConfig);
           return;
         }
       }
-    let todo = { type: this.todo.type, checked: false, text: this.model.text };
-    if ( !this.todoList ) this.todoList = [];
+    }
+    const todo = { type: this.todo.type, checked: false, text: this.model.text };
+    if ( this.todoList ) { this.todoList = []; }
     this.todoList.push(todo);
     this.model.text = '';
   }
@@ -88,7 +89,7 @@ export class TodosComponent implements OnInit {
   }
 
   createTodos() {
-    this.todoList = null; //[];
+    this.todoList = null; // [];
     this.todoListName = '';
   }
 
@@ -96,9 +97,9 @@ export class TodosComponent implements OnInit {
 //    $('#saveDialog').modal();
     this.todosService.setTodoListName(this.todoListName);
     console.log('todoListName: ' + this.todoListName);
-    if ( this.todoListName === '' )
+    if ( this.todoListName === '' ) {
       this.openDialog();
-    else {
+    } else {
       this.todosService.saveTodos(this.todoListName, this.todoList);
       this.snackBar.open('Todo list "' + this.todoListName + '" saved', '', this.snackBarConfig);
     }
@@ -120,9 +121,9 @@ export class TodosComponent implements OnInit {
 
   openDialog() {
     this.todosService.setTodoListName(this.todoListName);
-    let dialogRef = this.dialog.open(DialogComponent, {
+    const dialogRef = this.dialog.open(DialogComponent, {
       disableClose: false,
-      width: "30%"
+      width: '30%'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -135,8 +136,8 @@ export class TodosComponent implements OnInit {
   }
 
   checkboxClick( i: number ) {
-    //this.todoList[i].checked = this.model.checked;
-    console.log("checkBox(" + i + ") = " + this.todoList[i].checked);
+    // this.todoList[i].checked = this.model.checked;
+    console.log('checkBox(' + i + ') = ' + this.todoList[i].checked);
   }
 
   ngOnInit( ) {

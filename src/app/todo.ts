@@ -1,4 +1,4 @@
 export class Todo {
-  constructor( public inputTodo:string = '', public todoListName: string = '' ) {}
+  constructor ( public inputTodo: String = '', public todoListName: String = '' ) {}
 }
 

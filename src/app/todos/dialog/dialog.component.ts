@@ -1,25 +1,25 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
-import { TodosService, Todo } from '../todos.service';
+import { TodosService } from '../todos.service';
 import { Subscription } from 'rxjs/Subscription';
 
 
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.css']//,
+  styleUrls: ['./dialog.component.css'],
 //  providers: [TodosService]
 })
 export class DialogComponent implements OnInit, OnDestroy {
-  //@Input() todoListName: string = '';
-  //todoListName: string = '';
+  // @Input() todoListName: string = '';
+  // todoListName: string = '';
   subscription: Subscription;
   todoList = Array();
 
 //  model = this.todoListName;
   model: string = '';
-  
-  constructor( public dialogRef: MdDialogRef<DialogComponent>, private todosService: TodosService ) { 
+
+  constructor( public dialogRef: MdDialogRef<DialogComponent>, private todosService: TodosService ) {
     this.subscription = todosService.todoListName$.subscribe(
       todoListName => {
 //        this.todoListName = todoListName;
@@ -34,22 +34,23 @@ export class DialogComponent implements OnInit, OnDestroy {
     });
     */
   }
-  
-  show() { 
+
+  show() {
   }
 
-  cancelClick() { 
-    console.log("Cancel");
+  cancelClick() {
+    console.log('Cancel');
     console.log('Dialog.todoListName = ' + this.model);
     this.dialogRef.close('');
   }
 
-  okClick() { 
-    console.log("OK");
+  okClick() {
+    console.log('OK');
     this.todosService.setTodoListName(this.model);
     console.log('Dialog.todoListName = ' + this.model);
-    if ( this.model !== '' )
+    if ( this.model !== '' ) {
       this.dialogRef.close(this.model);
+    }
   }
 
   ngOnInit() {

@@ -1,8 +1,5 @@
-import { Injectable }      from '@angular/core';
-//import { Http }            from '@angular/core';
-import { Observable }      from 'rxjs/Observable';
-import { Subject }         from 'rxjs/Subject';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 
 export class Todo {
@@ -30,13 +27,13 @@ export class TodosService {
     this.todoListNameSource.next(todoListName);
     console.log('TodosService.setTodoListName = ' + todoListName);
   }
-  
+
   /**
     Get saved todo lists
    */
-  getSavedTodos() { 
-    let savedTodos = [];
-    for (var key in localStorage){
+  getSavedTodos() {
+    const savedTodos = [];
+    for ( const key in localStorage ) {
       /*
       let notFound = true;
       let array = JSON.parse(localStorage.getItem(key));
@@ -53,7 +50,7 @@ export class TodosService {
     console.log('TodosService.savedTodos: ' + savedTodos);
     this.savedTodosSource.next(JSON.stringify(savedTodos));
   }
-  
+
   saveTodos( todoListName: string, todoList: Todo[] ) {
     if ( todoList && todoListName !== '' ) {
       localStorage.setItem(todoListName, JSON.stringify(todoList));
@@ -65,7 +62,7 @@ export class TodosService {
 
   deleteTodo( i: number, todoList: Todo[] ) {
     todoList.splice(i, 1);
-    if ( todoList.length === 0 ) todoList = null;
+    if ( todoList.length === 0 ) { todoList = null; }
     console.log(todoList);
     console.log(i);
   }
